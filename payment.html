@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AI Sage Payment</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<section class="payment-section">
+
+<div class="payment-card">
+
+<h1>🤖 AI SAGE</h1>
+
+<h2>
+
+Registration Fee
+
+</h2>
+
+<div class="fee-box">
+
+<h1>
+
+₹5
+
+</h1>
+
+<p>
+
+This one-time registration fee helps us maintain the AI Sage learning platform and continuously develop new missions, educational content, and practical learning experiences for our students.
+
+</p>
+
+</div>
+
+<div class="qr-box">
+
+<img src="images/payment_qr.png"
+
+alt="AI Sage QR Code">
+
+</div>
+
+<p>
+
+UPI ID
+
+</p>
+
+<h3>
+
+aisage@upi
+
+</h3>
+
+<label>
+
+UPI Transaction ID
+
+</label>
+
+<input
+
+type="text"
+
+id="transactionID"
+
+placeholder="Enter UPI Ref Number">
+
+<label>
+
+Upload Payment Screenshot
+
+</label>
+
+<input
+
+type="file"
+
+id="paymentScreenshot"
+
+accept="image/*">
+
+<br><br>
+
+<button
+
+class="btn btn-primary"
+
+id="verifyPayment">
+
+Continue
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ===================================== -->
+<!-- AI Sage Loading Screen -->
+<!-- ===================================== -->
+
+<div id="loadingBox" class="loading-box">
+
+    <h2>⏳ Verifying Payment...</h2>
+
+    <p>Please don't close this page.</p>
+
+    <div class="progress-bar">
+
+        <div class="progress-fill"></div>
+
+    </div>
+
+</div>
+
+
+<script src="js/payment.js"></script>
+
+</body>
+
+
+</html>

@@ -1,0 +1,2364 @@
+/* ===================================
+   AI SAGE
+   Version 0.2
+=================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Inter',sans-serif;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+/*==============================
+Navigation
+==============================*/
+
+.navbar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    background:#0f172a;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 40px;
+
+    z-index:1000;
+
+}
+
+.logo{
+
+    color:white;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.logo span{
+
+    color:#3B82F6;
+
+}
+
+.nav-links{
+
+    display:flex;
+
+    list-style:none;
+
+    gap:35px;
+
+}
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:white;
+
+    font-weight:bold;
+
+}
+
+.nav-links a:hover{
+
+    color:#60a5fa;
+
+}
+
+/*==============================
+Hero
+==============================*/
+
+/*=====================================
+Hero
+=====================================*/
+
+.hero{
+
+    min-height:90vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    background:linear-gradient(135deg,#16213E,#2563EB);
+
+    color:white;
+
+    padding:120px 40px;
+
+}
+
+.hero-content{
+
+   max-width:1100px;
+
+}
+
+.hero h1{
+
+    font-size:68px;
+
+    font-family:'Poppins',sans-serif;
+
+    margin-bottom:25px;
+
+}
+
+.hero h2{
+
+    font-size:34px;
+
+    font-weight:500;
+
+    line-height:1.5;
+
+    margin-bottom:35px;
+
+}
+
+.hero p{
+
+    font-size:22px;
+
+    line-height:2.2;
+
+    margin-bottom:25px;
+
+}
+
+.hero-highlight{
+
+    font-size:24px;
+
+    font-weight:600;
+
+    color:#FACC15;
+
+    margin-top:20px;
+
+}
+
+
+.hero-buttons{
+
+    margin-top:50px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.hero-list{
+
+    list-style:none;
+
+    margin:40px auto;
+
+    width:fit-content;
+
+    text-align:left;
+
+    padding:0;
+
+}
+
+.hero-list li{
+
+
+    font-size:20px;
+
+    margin:18px 0;
+
+    position:relative;
+
+    padding-left:35px;
+
+    line-height:1.8;
+
+}
+
+.hero-list li::before{
+
+    content:"✓";
+
+    color:#22C55E;
+
+    font-weight:bold;
+
+    position:absolute;
+
+    left:0;
+
+}
+
+
+.hero-subtitle{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    margin:35px 0;
+
+}
+
+.hero-subtitle p{
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:34px;
+
+    font-weight:500;
+
+    margin:0;
+
+}
+
+
+.btn{
+
+    display:inline-block;
+
+    margin-top:35px;
+
+    padding:18px 42px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-family:'Poppins',sans-serif;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    transition:all .3s ease;
+
+    cursor:pointer;
+
+    min-width:220px;
+
+    text-align:center;
+
+}
+
+.btn-primary{
+
+    background:#ffffff;
+
+    color:#2563EB;
+
+    border:2px solid #ffffff;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+}
+
+
+.btn-primary:hover{
+
+    background:#2563EB;
+
+    color:#ffffff;
+
+    border:2px solid #ffffff;
+
+    transform:translateY(-4px);
+
+}
+
+.btn-secondary{
+
+    background:transparent;
+
+    color:white;
+
+    border:2px solid white;
+
+}
+
+.btn-secondary:hover{
+
+    background:white;
+
+    color:#2563EB;
+
+}
+
+
+.btn:hover{
+
+    background:#dbeafe;
+
+    transform:translateY(-3px);
+
+}
+
+
+/*=====================================
+Why AI Sage
+=====================================*/
+
+.why-ai{
+
+    padding:90px 60px;
+
+    background:white;
+
+    text-align:center;
+
+}
+
+.why-ai h2{
+
+    font-size:42px;
+
+    color:#0f172a;
+
+    margin-bottom:20px;
+
+}
+
+.section-text{
+
+    font-size:20px;
+
+    color:#475569;
+
+    margin-bottom:60px;
+
+}
+
+section h2{
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+
+.success-section{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#eef3fb;
+
+}
+
+.success-card{
+
+    background:white;
+
+    width:650px;
+
+    padding:50px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.success-card h1{
+
+    color:#2f62ff;
+
+    margin-bottom:48px;
+
+}
+
+.success-list{
+
+    margin:35px 0;
+
+    line-height:2;
+
+    font-size:18px;
+
+}
+
+
+.success-badge{
+
+    display:inline-block;
+
+    background:#eafaf0;
+
+    color:#1d7a3d;
+
+    padding:10px 24px;
+
+    border-radius:25px;
+
+    font-weight:600;
+
+    margin:25px 0;
+
+}
+
+.success-card .btn{
+
+    background:#2f62ff;
+
+    color:white;
+
+    padding:16px 36px;
+
+    border-radius:10px;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.success-card .btn:hover{
+
+    background:#1f4fe0;
+
+    transform:translateY(-3px);
+
+}
+
+
+.success-divider{
+
+    width:120px;
+
+    margin:35px auto;
+
+    border:0;
+
+    height:2px;
+
+    background:#2f62ff;
+
+    opacity:.2;
+
+}
+
+
+
+.sucess-icon
+{
+    font-size:55px;
+}
+
+
+
+.card-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+
+}
+
+.card{
+
+    background:#f8fafc;
+
+    padding:35px;
+
+    border-radius:15px;
+
+    transition:0.3s;
+
+    box-shadow:0px 10px 25px rgba(0,0,0,0.08);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.card h3{
+
+    margin-bottom:20px;
+
+    color:#2563eb;
+
+}
+
+.card p{
+
+    color:#475569;
+
+    line-height:1.7;
+
+}
+
+/*=====================================
+Learning Journey
+=====================================*/
+
+.journey{
+
+    background:#eef4ff;
+
+    padding:90px 60px;
+
+    text-align:center;
+
+}
+
+.timeline{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.step{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+
+    transition:.3s;
+
+}
+
+.step:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.circle{
+
+    width:70px;
+
+    height:70px;
+
+    background:#2563eb;
+
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    margin:auto;
+
+    margin-bottom:20px;
+
+}
+
+.step h3{
+
+    margin-bottom:15px;
+
+    color:#0f172a;
+
+}
+
+
+
+
+.step p{
+
+    color:#475569;
+
+    line-height:1.6;
+
+}
+
+/*=====================================
+Featured Missions
+=====================================*/
+
+.missions{
+
+    padding:120px 80px;
+
+    background:#f8fafc;
+
+    text-align:center;
+
+}
+
+.mission-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:35px;
+
+    margin-top:60px;
+
+}
+
+.mission-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:35px 25px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    min-height:360px;
+
+    transition:0.3s;
+
+}
+
+.mission-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,0.15);
+
+}
+
+.mission-icon{
+
+    font-size:52px;
+
+    margin-bottom:20px;
+
+}
+
+.mission-card h3{
+
+    margin-bottom:20px;
+
+    color:#2563EB;
+
+}
+
+.mission-card p{
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
+
+
+/*=====================================
+AI Sage by Numbers
+=====================================*/
+
+.stats{
+
+    background:#ffffff;
+
+    padding:120px 80px;
+
+    text-align:center;
+
+}
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.stat-card{
+
+    background:#f8fafc;
+
+    border-radius:18px;
+
+    padding:40px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.stat-card h3{
+
+    font-size:48px;
+
+    color:#2563EB;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card p{
+
+    font-size:18px;
+
+    color:#475569;
+
+}
+
+.stat-icon{
+
+    font-size:40px;
+
+    margin-bottom:15px;
+
+}
+
+/*=============================================
+                FOOTER
+=============================================*/
+
+.footer{
+
+    background:#10182b;
+
+    color:white;
+
+    padding:70px 80px 25px;
+
+}
+
+
+.footer-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:50px;
+
+}
+
+
+.footer-column h2{
+    font-size:30px;
+    color:#4f8cff;
+    margin-bottom:20px;
+}
+
+
+.footer-column h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:70px;
+
+    height:3px;
+
+    background:#4f8cff;
+
+    margin-top:10px;
+
+}
+
+
+.footer-column h3{
+
+    margin-bottom:20px;
+
+    color:#ffffff;
+
+}
+
+
+.footer-column p{
+
+    color:#d0d6e5;
+
+    line-height:1.8;
+
+}
+
+
+.footer-tagline{
+
+    color:#ffd54f;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+
+.footer-column ul{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+
+.footer-column li{
+
+    margin-bottom:12px;
+
+}
+
+
+.footer-column a{
+
+    transition:0.3s;
+
+}
+
+.footer-column a:hover{
+
+    color:#4f8cff;
+
+    padding-left:8px;
+
+}
+
+.footer hr{
+
+    margin:45px 0 25px;
+
+    border:none;
+
+    height:1px;
+
+    background:#33415c;
+
+}
+
+
+.footer-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+    color:#c5cde0;
+
+    font-size:15px;
+
+}
+
+/*==============================
+Payment Page
+===============================*/
+
+.payment-section{
+
+padding:100px 20px;
+
+display:flex;
+
+justify-content:center;
+
+background:#f4f7fc;
+
+min-height:100vh;
+
+}
+
+.payment-card{
+
+background:white;
+
+padding:50px;
+
+border-radius:20px;
+
+max-width:500px;
+
+width:100%;
+
+text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+
+}
+
+.payment-card img{
+
+width:250px;
+
+margin:25px auto;
+
+display:block;
+
+}
+
+.payment-card input{
+
+width:100%;
+
+padding:12px;
+
+margin-top:8px;
+
+margin-bottom:20px;
+
+}
+
+/*=========================================
+AI Sage Loading Screen
+=========================================*/
+
+.loading-box{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,0.65);
+
+    z-index:9999;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    color:white;
+
+    font-family:Poppins, sans-serif;
+
+}
+
+.progress-bar{
+
+    width:320px;
+
+    height:16px;
+
+    background:#ddd;
+
+    border-radius:30px;
+
+    margin-top:25px;
+
+    overflow:hidden;
+
+}
+
+.progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:#3b82f6;
+
+    animation:loadingAnimation 2s linear infinite;
+
+}
+
+@keyframes loadingAnimation{
+
+    0%{
+
+        width:0%;
+
+    }
+
+    100%{
+
+        width:100%;
+
+    }
+
+}
+
+/*=========================================
+Watch Demo Page
+=========================================*/
+
+.watch-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:70px 20px;
+
+    background:#eef3fb;
+
+}
+
+.watch-card{
+
+    background:white;
+
+    max-width:1050px;
+
+    width:100%;
+
+    padding:50px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+}
+
+.watch-card h2{
+
+    color:#2f62ff;
+
+    margin-bottom:20px;
+
+}
+
+.watch-card video{
+
+    width:100%;
+
+    max-width:800px;
+
+    border-radius:18px;
+
+    margin:25px 0;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+
+}
+
+.mission-list{
+
+    list-style:none;
+
+    padding:0;
+
+    font-size:18px;
+
+    line-height:2;
+
+}
+
+/*=========================================
+Welcome Message
+=========================================*/
+
+.welcome-heading{
+
+    color:#2f62ff;
+
+    margin-top:20px;
+
+    margin-bottom:10px;
+
+    font-size:24px;
+
+}
+
+.welcome-message{
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    color:#555;
+
+    margin-bottom:25px;
+
+}
+
+/*=========================================
+Mission Progress Card
+=========================================*/
+
+.progress-card{
+
+    background:#f8fbff;
+
+    border:1px solid #dce8ff;
+
+    border-radius:15px;
+
+    padding:15px 20px;
+
+    margin:20px 0;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+
+}
+
+.progress-card h3{
+
+    color:#2f62ff;
+
+    margin:0 0 10px 0;
+
+}
+
+.progress-list{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+    display:inline-block;
+
+    text-align:left;
+
+}
+
+.progress-list li{
+
+    padding:3px 0;
+
+    font-size:16px;
+
+    line-height:1.4;
+
+}
+
+/*=========================================
+Mission Buttons
+=========================================*/
+
+.mission-buttons{
+
+    margin-top:30px;
+
+}
+
+.btn-secondary{
+
+    display:inline-block;
+
+    padding:12px 24px;
+
+    border-radius:10px;
+
+    background:#f5f5f5;
+
+    color:#333;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    border:1px solid #ddd;
+
+    transition:.3s;
+
+}
+
+.btn-secondary:hover{
+
+    background:#e9e9e9;
+
+}
+
+/*=========================================
+Registration Page
+=========================================*/
+
+.register-section{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    background:#eef3fb;
+
+    padding:40px 20px;
+
+}
+
+.register-card{
+
+    background:white;
+
+    width:100%;
+
+    max-width:750px;
+
+    padding:45px;
+
+    border-radius:20px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+}
+
+.register-card h1{
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+.register-card h2{
+
+    text-align:center;
+
+    color:#2f62ff;
+
+    margin-bottom:15px;
+
+}
+
+.register-subtitle{
+
+    text-align:center;
+
+    color:#555;
+
+    line-height:1.7;
+
+    margin-bottom:35px;
+
+}
+
+
+.register-card label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+}
+
+.register-card input,
+
+.register-card select{
+
+    width:100%;
+
+    padding:14px;
+
+    border:1px solid #d0d7e2;
+
+    border-radius:10px;
+
+    font-size:16px;
+
+    box-sizing:border-box;
+
+    transition:.3s;
+
+}
+
+.register-card input:focus,
+
+.register-card select:focus{
+
+    outline:none;
+
+    border-color:#2f62ff;
+
+    box-shadow:0 0 8px rgba(47,98,255,.20);
+
+}
+
+.register-card button{
+
+    width:100%;
+
+    margin-top:35px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#2f62ff;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.register-card button:hover{
+
+    background:#1f4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+/*=========================================
+Registration Progress
+=========================================*/
+
+.step-progress{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:30px 0;
+
+    padding:15px;
+
+    background:#f4f8ff;
+
+    border-radius:12px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.step-progress span{
+
+    color:#888;
+
+}
+
+.active-step{
+
+    color:#2f62ff !important;
+
+}
+
+.footer-text{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+/*=========================================================
+                    FOOTER
+=========================================================*/
+
+.footer{
+
+    background:#0f172a;
+
+    color:#ffffff;
+
+    padding:60px 8% 25px;
+
+    margin-top:70px;
+
+}
+
+.footer-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:40px;
+
+}
+
+.footer-column h2{
+
+    margin-bottom:15px;
+
+    color:#ffffff;
+
+}
+
+.footer-column h3{
+
+    margin-bottom:15px;
+
+    color:#60a5fa;
+
+}
+
+.footer-tagline{
+
+    color:#93c5fd;
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+.footer-column p{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+}
+
+.footer-column ul{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.footer-column ul li{
+
+    margin-bottom:12px;
+
+    color:#cbd5e1;
+
+}
+
+.footer-column a{
+
+    color:#cbd5e1;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.footer-column a:hover{
+
+    color:#60a5fa;
+
+}
+
+.footer hr{
+
+    margin:40px 0 25px;
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,0.15);
+
+}
+
+.footer-bottom{
+
+    text-align:center;
+
+}
+
+.footer-bottom p{
+
+    margin:8px 0;
+
+    color:#cbd5e1;
+
+}
+
+.footer-powered{
+
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:1px solid rgba(255,255,255,0.10);
+
+    font-size:14px;
+
+    color:#94a3b8;
+
+    line-height:1.8;
+
+}
+
+/*======================================
+Registration Fee
+======================================*/
+
+.fee-box{
+
+    background:#eef5ff;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    margin:25px 0;
+
+}
+
+.fee-box h1{
+
+    color:#2563EB;
+
+    font-size:52px;
+
+    margin-bottom:10px;
+
+}
+
+.fee-box p{
+
+    color:#555;
+
+    line-height:1.8;
+
+}
+
+.student-id-card{
+
+    margin:30px auto;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    background:#eef5ff;
+
+    border:2px dashed #2563EB;
+
+}
+
+.student-id-card h3{
+
+    color:#666;
+
+    margin-bottom:12px;
+
+}
+
+.student-id-card h2{
+
+    color:#2563EB;
+
+    font-size:34px;
+
+    letter-spacing:2px;
+
+}
+
+/*=========================================
+Legal Footer
+=========================================*/
+
+.footer-column ul li a{
+
+    color:#cbd5e1;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+.footer-column ul li a:hover{
+
+    color:#60a5fa;
+
+}
+
+/*=========================================
+Student ID Information
+=========================================*/
+
+.student-id-info{
+
+    margin-top:35px;
+
+    padding:25px;
+
+    background:#f8fbff;
+
+    border-radius:15px;
+
+    border-left:5px solid #2563EB;
+
+    text-align:left;
+
+}
+
+.student-id-info h4{
+
+    color:#2563EB;
+
+    margin-bottom:15px;
+
+}
+
+.student-id-info p{
+
+    color:#555;
+
+    line-height:1.8;
+
+    margin-bottom:18px;
+
+}
+
+.student-id-info ul{
+
+    margin-left:20px;
+
+    color:#444;
+
+    line-height:2;
+
+}
+
+.footer-version{
+
+    margin-top:18px;
+
+    color:#94a3b8;
+
+    font-size:14px;
+
+    letter-spacing:1px;
+
+}
+
+/*=========================================
+About AI Sage
+=========================================*/
+
+.about-section{
+
+    padding:90px 8%;
+
+    background:white;
+
+    text-align:center;
+
+}
+
+.about-section h2{
+
+    color:#0F172A;
+
+    margin-bottom:20px;
+
+    font-size:42px;
+
+}
+
+.about-subtitle{
+
+    color:#2563EB;
+
+    font-size:22px;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+
+}
+
+.about-section p{
+
+    max-width:900px;
+
+    margin:20px auto;
+
+    line-height:2;
+
+    color:#555;
+
+}
+
+/*=========================================
+            OUR VISION
+=========================================*/
+
+.vision-section{
+
+    padding:90px 8%;
+
+    background:#F8FAFC;
+
+    text-align:center;
+
+}
+
+.vision-section h2{
+
+    font-size:42px;
+
+    color:#0F172A;
+
+    margin-bottom:20px;
+
+}
+
+.vision-subtitle{
+
+    font-size:22px;
+
+    color:#2563EB;
+
+    font-weight:600;
+
+    margin-bottom:30px;
+
+}
+
+.vision-section p{
+
+    max-width:900px;
+
+    margin:18px auto;
+
+    line-height:2;
+
+    color:#555;
+
+}
+
+/*=========================================
+        FINAL CALL TO ACTION
+=========================================*/
+
+.cta-section{
+
+    padding:90px 8%;
+    background:linear-gradient(135deg,#0F172A,#2563EB);
+    color:white;
+    text-align:center;
+
+}
+
+.cta-container{
+
+    max-width:1200px;
+    margin:auto;
+
+}
+
+.cta-section h2{
+
+        font-size:52px;
+    margin-bottom:25px;
+    font-weight:700;
+
+
+}
+
+
+.cta-description{
+
+    font-size:22px;
+    line-height:1.8;
+    max-width:900px;
+    margin:auto;
+    margin-bottom:45px;
+
+}
+
+.cta-section p{
+
+    font-size:20px;
+    line-height:1.8;
+    color:#E2E8F0;
+    margin-bottom:40px;
+
+}
+
+.cta-buttons{
+
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+     margin-top:45px;
+}
+
+.cta-buttons .btn{
+
+    width:220px;
+
+    height:60px;
+
+    font-size:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    white-space:nowrap;
+
+}
+
+
+/*=========================================
+        CTA FLOW
+=========================================*/
+
+.registration-flow{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+    margin:50px 0;
+
+}
+
+.flow-step{
+
+    width:260px;
+    min-height:320px;
+
+    padding:30px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+}
+
+.flow-step:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.flow-number{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:#2563EB;
+
+    color:white;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.flow-step h4{
+
+    margin-top:18px;
+
+    margin-bottom:18px;
+
+    color:#2563EB;
+
+    min-height:45px;
+
+    line-height:1.4;
+
+    text-align:center;
+
+}
+
+.flow-step p{
+
+    line-height:1.8;
+
+    min-height:70px;
+
+    color:#555;
+
+    text-align:center;
+
+}
+
+.flow-arrow{
+
+    font-size:42px;
+
+    color:white;
+
+    font-weight:bold;
+
+    margin:0 15px;
+}
+
+.cta-note{
+
+    max-width:850px;
+
+    margin:40px auto 0;
+
+    color:#E2E8F0;
+
+    line-height:1.9;
+
+    font-size:16px;
+
+}
+
+/*=========================================
+CTA Improvements
+=========================================*/
+
+.cta-flow-title{
+
+    margin-top:40px;
+
+    margin-bottom:35px;
+
+    font-size:30px;
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+.price-tag{
+
+    margin-top:auto;
+
+    font-size:34px;
+
+    color:#2563EB;
+
+    font-weight:700;
+
+}
+
+.student-benefits{
+
+    width:100%;
+
+    max-width:600px;
+
+    margin:50px auto 0;
+
+    padding:35px;
+
+    background:rgba(255,255,255,.12);
+
+    border-radius:18px;
+
+}
+
+.student-benefits h3{
+
+    color:white;
+
+    margin-bottom:18px;
+
+}
+
+.student-benefits p{
+
+    color:#E2E8F0;
+
+    margin-bottom:30px;
+
+}
+
+.benefit-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.benefit-grid div{
+
+    background:white;
+
+    color:#1E293B;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    font-weight:500;
+
+}
+
+.cta-divider{
+
+    width:140px;
+
+    margin:50px auto;
+
+    border:none;
+
+    border-top:2px solid rgba(255,255,255,.35);
+
+}
+
+.student-roadmap{
+
+    width:420px;
+
+    margin:35px auto;
+
+}
+
+.roadmap-item{
+
+    background:#ffffff;
+
+    color:#1e3a8a;
+    
+    width:320px;
+
+    padding:16px;
+
+    margin:12px auto;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    text-align:center;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.12);
+
+}
+
+.roadmap-arrow{
+
+    text-align:center;
+
+    font-size:30px;
+
+    color:#93c5fd;
+
+    font-weight:bold;
+
+}
+
+.roadmap-destination{
+
+    background:linear-gradient(135deg,#2563EB,#1D4ED8);
+
+    color:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin-top:15px;
+
+}
+
+.version-badge{
+
+    width:fit-content;
+
+    margin:50px auto 20px;
+
+    background:white;
+
+    color:#2563EB;
+
+    padding:10px 28px;
+
+    border-radius:30px;
+
+    font-weight:700;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.version-badge span{
+
+    color:#64748B;
+
+}
+
+.journey-message{
+
+    margin-top:30px;
+
+    color:white;
+
+    line-height:2;
+
+    text-align:center;
+
+    font-size:17px;
+
+    max-width:700px;
+
+    margin-left:auto;
+
+    margin-right:auto;
+
+}
+
+/* ===========================================
+   Registration Information Box
+=========================================== */
+
+.registration-note {
+
+    margin: 25px 0;
+
+    padding: 18px 20px;
+
+    background: #f8fbff;
+
+    border-left: 5px solid #2563eb;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    font-size: 0.95rem;
+
+    line-height: 1.6;
+
+    color: #333;
+
+}
+
+.registration-note h3 {
+
+    margin-bottom: 12px;
+
+    color: #2563eb;
+
+    font-size: 1.05rem;
+
+}
+
+.registration-note p {
+
+    margin-bottom: 10px;
+
+}
+
+.secure-note {
+
+    margin-top: 18px;
+
+    text-align: center;
+
+    font-size: 0.85rem;
+
+    color: #666;
+
+}
+
+.registration-note strong{
+
+    color:#2563eb;
+
+    font-weight:700;
+
+}
+
+.form-divider{
+
+    margin:25px 0;
+
+    border:none;
+
+    border-top:1px solid #e5e7eb;
+
+}
+
+
+
+/* ===========================================
+   Consent Checkbox
+=========================================== */
+
+.consent-container{
+
+    margin-top:25px;
+
+    margin-bottom:25px;
+
+}
+
+.consent-checkbox{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+    cursor:pointer;
+
+    font-size:0.95rem;
+
+    line-height:1.5;
+
+    color:#333;
+
+}
+
+.consent-checkbox input{
+
+    margin-top:4px;
+
+    width:18px;
+
+    height:18px;
+
+    flex-shrink:0;
+
+}
+
+.consent-checkbox a{
+
+    color:#2563eb;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+}
+
+.consent-checkbox a:hover{
+
+    text-decoration:underline;
+
+}
+
+.secure-note{
+
+    font-size:0.82rem;
+
+    color:#6b7280;
+
+}
