@@ -1,20 +1,27 @@
-//=====================================
-// AI Sage Payment
-//=====================================
+// =====================================
+// AI SAGE Payment / Registration
+// =====================================
 
 console.log("===== AI Sage Payment JS Loaded =====");
-// Google Apps Script URL
+
+
+// =====================================
+// GOOGLE APPS SCRIPT URL
+// =====================================
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbyICEPSo23ZXQn42V13jTnPEHDIkOF6jbj4eiCpW0ACRDJ6eDmsG-YiE1MlwsQ-XTr1/exec";
 
 
-// Continue Button
+// =====================================
+// CONTINUE BUTTON
+// =====================================
 
 const verifyButton =
-document.getElementById("verifyPayment");
+    document.getElementById("verifyPayment");
 
-verifyButton.addEventListener("click", function(event){
+
+verifyButton.addEventListener("click", function(event) {
 
     event.preventDefault();
 
@@ -22,165 +29,358 @@ verifyButton.addEventListener("click", function(event){
 
 });
 
-//=====================================
-// Submit Registration
-//=====================================
 
-async function submitRegistration(){
+// =====================================
+// SUBMIT REGISTRATION
+// =====================================
+
+async function submitRegistration() {
 
     console.log("Step 1 : Function Started");
+
+
+    // ---------------------------------
     // Read Registration Data
+    // ---------------------------------
 
     const registration =
-    JSON.parse(localStorage.getItem("registrationData"));
+        JSON.parse(
+            localStorage.getItem("registrationData")
+        );
 
-    if(!registration){
+
+    if (!registration) {
 
         alert("Registration information not found.");
 
-        window.location.href="register.html";
+        window.location.href = "register.html";
 
         return;
 
     }
 
-    // Read Payment Details
 
-    const transactionID =
-    document.getElementById("transactionID").value.trim();
-    console.log("Transaction ID =", transactionID);
+    // ---------------------------------
+    // Read Payment Screenshot
+    // ---------------------------------
+
+    const screenshotInput =
+        document.getElementById("paymentScreenshot");
+
 
     const screenshot =
-    document.getElementById("paymentScreenshot").files[0];
-    console.log("Screenshot =", screenshot);
+        screenshotInput.files[0];
 
-    // Validation
 
-    if(transactionID===""){
+    console.log(
+        "Screenshot =",
+        screenshot
+    );
 
-        
-        console.log("Validation Failed : Transaction ID Empty");
-        alert("Please enter Transaction ID.");
+
+    // ---------------------------------
+    // Validate Screenshot
+    // ---------------------------------
+
+    if (!screenshot) {
+
+        console.log(
+            "Validation Failed : Screenshot Missing"
+        );
+
+        alert(
+            "Please upload payment screenshot."
+        );
 
         return;
 
     }
 
-    if(!screenshot){
 
-        console.log("Validation Failed : Screenshot Missing");
-        
+    console.log(
+        "Validation Passed"
+    );
 
-        alert("Please upload payment screenshot.");
 
-        return;
-
-    }
-
-    console.log("Validation Passed");
+    // ---------------------------------
+    // Disable Button
+    // ---------------------------------
 
     const button =
-    document.getElementById("verifyPayment");
+        document.getElementById("verifyPayment");
+
 
     button.disabled = true;
 
-    button.innerText = "Submitting...";
-
-    console.log("Step 6 : Showing Loading Screen");
-
-    document.getElementById("loadingBox").style.display="flex";
+    button.innerText =
+        "Submitting...";
 
 
-    // Prepare Data
+    // ---------------------------------
+    // Show Loading Screen
+    // ---------------------------------
+
+    console.log(
+        "Step 2 : Showing Loading Screen"
+    );
+
+
+    const loadingBox =
+        document.getElementById("loadingBox");
+
+
+    if (loadingBox) {
+
+        loadingBox.style.display = "flex";
+
+    }
+
+
+    // =================================
+    // CONVERT SCREENSHOT TO BASE64
+    // =================================
+
+    console.log(
+        "Step 3 : Reading Screenshot"
+    );
+
+
+    const screenshotData =
+        await convertFileToBase64(screenshot);
+
+
+    console.log(
+        "Step 4 : Screenshot Converted"
+    );
+
+
+    // =================================
+    // PREPARE DATA
+    // =================================
 
     const data = {
 
         name:
-        registration.name,
+            registration.name || "",
 
         email:
-        registration.email,
+            registration.email || "",
 
         mobile:
-        registration.mobile,
+            registration.mobile || "",
 
         profession:
-        registration.profession,
+            registration.profession || "",
 
         transaction:
-        transactionID,
+            "",
 
-        screenshot:
-        screenshot.name,
+        screenshotData:
+            screenshotData,
+
+        screenshotName:
+            screenshot.name,
+
+        screenshotType:
+            screenshot.type,
 
         status:
-        "Paid"
+            "Payment Submitted"
 
     };
 
-    try{
+
+    console.log(
+        "Step 5 : Sending Registration Data"
+    );
+
+
+    // =================================
+    // SEND TO GOOGLE APPS SCRIPT
+    // =================================
+
+    try {
 
         const response =
-        await fetch(
+            await fetch(
 
-            SCRIPT_URL,
+                SCRIPT_URL,
 
-            {
+                {
 
-                method:"POST",
+                    method: "POST",
 
-                body:JSON.stringify(data)
+                    body:
+                        JSON.stringify(data)
 
-            }
+                }
 
+            );
+
+
+        console.log(
+            "Step 6 : Response Received"
         );
 
-    const result =
-        await response.json();
 
-        console.log(result);
+        const result =
+            await response.json();
 
-     if(result.result==="success")
-        {
 
-         localStorage.removeItem("registrationData");
+        console.log(
+            "Apps Script Result =",
+            result
+        );
 
-         localStorage.setItem("transactionID",transactionID);
 
-         localStorage.setItem("studentID",result.studentID);
+        // =================================
+        // SUCCESS
+        // =================================
 
-         window.location.replace("success.html");
+        if (
+            result.result === "success"
+        ) {
+
+            console.log(
+                "Registration Successful"
+            );
+
+
+            // Remove temporary registration data
+
+            localStorage.removeItem(
+                "registrationData"
+            );
+
+
+            // Save generated Student ID
+
+            localStorage.setItem(
+                "studentID",
+                result.studentID
+            );
+
+
+            console.log(
+                "Student ID =",
+                result.studentID
+            );
+
+
+            // Go to success page
+
+            window.location.replace(
+                "success.html"
+            );
+
 
         }
 
-        else{
+        // =================================
+        // SERVER ERROR
+        // =================================
 
-            document.getElementById("loadingBox").style.display="none";
+        else {
+
+            console.error(
+                "Registration Failed:",
+                result.message
+            );
+
+
+            if (loadingBox) {
+
+                loadingBox.style.display =
+                    "none";
+
+            }
+
 
             button.disabled = false;
 
-            button.innerText = "Continue";
-            alert("Registration failed.");
+            button.innerText =
+                "Continue";
+
+
+            alert(
+                "Registration failed.\n\n" +
+                (result.message || "Please try again.")
+            );
 
         }
 
     }
 
-    catch(error){
+
+    // =================================
+    // CONNECTION ERROR
+    // =================================
+
+    catch (error) {
+
+        console.error(
+            "Connection Error:",
+            error
+        );
 
 
-        document.getElementById("loadingBox").style.display="none";
+        if (loadingBox) {
+
+            loadingBox.style.display =
+                "none";
+
+        }
 
 
         button.disabled = false;
 
-        button.innerText = "Continue";
-        
-        
-        alert("Unable to connect to AI Sage Server.");
+        button.innerText =
+            "Continue";
 
-        console.log(error);
+
+        alert(
+            "Unable to connect to AI Sage Server."
+        );
 
     }
+
+}
+
+
+// =====================================
+// CONVERT FILE TO BASE64
+// =====================================
+
+function convertFileToBase64(file) {
+
+    return new Promise(
+        function(resolve, reject) {
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function() {
+
+                    resolve(
+                        reader.result
+                    );
+
+                };
+
+
+            reader.onerror =
+                function(error) {
+
+                    reject(error);
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        }
+    );
 
 }
