@@ -64,6 +64,14 @@ async function submitRegistration() {
     // Read Payment Screenshot
     // ---------------------------------
 
+    const transactionInput =
+        document.getElementById("transactionId");
+
+
+    const transaction =
+        transactionInput.value.trim();
+
+
     const screenshotInput =
         document.getElementById("paymentScreenshot");
 
@@ -73,10 +81,33 @@ async function submitRegistration() {
 
 
     console.log(
+        "Transaction ID =",
+        transaction
+    );
+
+
+    console.log(
         "Screenshot =",
         screenshot
     );
 
+    // ---------------------------------
+    // Validate Transaction ID
+    // ---------------------------------
+
+    if (!transaction) {
+    
+        console.log(
+            "Validation Failed : Transaction ID Missing"
+        );
+
+        alert(
+            "Please enter your UPI Transaction ID."
+        );
+
+        return;
+
+    }
 
     // ---------------------------------
     // Validate Screenshot
@@ -173,7 +204,7 @@ async function submitRegistration() {
             registration.profession || "",
 
         transaction:
-            "",
+            transaction,
 
         screenshotData:
             screenshotData,
