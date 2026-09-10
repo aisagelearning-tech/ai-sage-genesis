@@ -21,13 +21,26 @@ const verifyButton =
     document.getElementById("verifyPayment");
 
 
-verifyButton.addEventListener("click", function(event) {
+if (!verifyButton) {
 
-    event.preventDefault();
+    console.error(
+        "ERROR: verifyPayment button not found."
+    );
 
-    submitRegistration();
+} else {
 
-});
+    verifyButton.addEventListener(
+        "click",
+        function(event) {
+
+            event.preventDefault();
+
+            submitRegistration();
+
+        }
+    );
+
+}
 
 
 // =====================================
@@ -36,44 +49,123 @@ verifyButton.addEventListener("click", function(event) {
 
 async function submitRegistration() {
 
-    console.log("Step 1 : Function Started");
+    console.log("=================================");
+    console.log("AI SAGE REGISTRATION STARTED");
+    console.log("=================================");
 
 
     // ---------------------------------
     // Read Registration Data
     // ---------------------------------
 
-    const registration =
-        JSON.parse(
-            localStorage.getItem("registrationData")
+    const registrationData =
+        localStorage.getItem("registrationData");
+
+
+    console.log(
+        "Registration data exists:",
+        !!registrationData
+    );
+
+
+    if (!registrationData) {
+
+        alert(
+            "Registration information not found."
         );
 
-
-    if (!registration) {
-
-        alert("Registration information not found.");
-
-        window.location.href = "register.html";
+        window.location.href =
+            "register.html";
 
         return;
 
     }
 
 
+    let registration;
+
+
+    try {
+
+        registration =
+            JSON.parse(registrationData);
+
+    } catch (error) {
+
+        console.error(
+            "Registration JSON error:",
+            error
+        );
+
+        alert(
+            "Registration information is corrupted. Please register again."
+        );
+
+        return;
+
+    }
+
+
+    console.log(
+        "Registration data:",
+        registration
+    );
+
+
     // ---------------------------------
-    // Read Payment Screenshot
+    // Read Transaction ID
     // ---------------------------------
 
     const transactionInput =
         document.getElementById("transactionId");
 
 
+    if (!transactionInput) {
+
+        console.error(
+            "ERROR: transactionId input not found."
+        );
+
+        alert(
+            "Transaction ID field not found."
+        );
+
+        return;
+
+    }
+
+
     const transaction =
         transactionInput.value.trim();
 
 
+    console.log(
+        "Transaction ID:",
+        transaction
+    );
+
+
+    // ---------------------------------
+    // Read Screenshot
+    // ---------------------------------
+
     const screenshotInput =
         document.getElementById("paymentScreenshot");
+
+
+    if (!screenshotInput) {
+
+        console.error(
+            "ERROR: paymentScreenshot input not found."
+        );
+
+        alert(
+            "Payment screenshot field not found."
+        );
+
+        return;
+
+    }
 
 
     const screenshot =
@@ -81,24 +173,19 @@ async function submitRegistration() {
 
 
     console.log(
-        "Transaction ID =",
-        transaction
-    );
-
-
-    console.log(
-        "Screenshot =",
+        "Screenshot:",
         screenshot
     );
 
-    // ---------------------------------
-    // Validate Transaction ID
-    // ---------------------------------
+
+    // =================================
+    // VALIDATE TRANSACTION ID
+    // =================================
 
     if (!transaction) {
-    
+
         console.log(
-            "Validation Failed : Transaction ID Missing"
+            "Validation failed: Transaction ID missing."
         );
 
         alert(
@@ -109,14 +196,15 @@ async function submitRegistration() {
 
     }
 
-    // ---------------------------------
-    // Validate Screenshot
-    // ---------------------------------
+
+    // =================================
+    // VALIDATE SCREENSHOT
+    // =================================
 
     if (!screenshot) {
 
         console.log(
-            "Validation Failed : Screenshot Missing"
+            "Validation failed: Screenshot missing."
         );
 
         alert(
@@ -129,13 +217,13 @@ async function submitRegistration() {
 
 
     console.log(
-        "Validation Passed"
+        "Validation passed."
     );
 
 
-    // ---------------------------------
-    // Disable Button
-    // ---------------------------------
+    // =================================
+    // DISABLE BUTTON
+    // =================================
 
     const button =
         document.getElementById("verifyPayment");
@@ -147,14 +235,9 @@ async function submitRegistration() {
         "Submitting...";
 
 
-    // ---------------------------------
-    // Show Loading Screen
-    // ---------------------------------
-
-    console.log(
-        "Step 2 : Showing Loading Screen"
-    );
-
+    // =================================
+    // SHOW LOADING SCREEN
+    // =================================
 
     const loadingBox =
         document.getElementById("loadingBox");
@@ -162,75 +245,93 @@ async function submitRegistration() {
 
     if (loadingBox) {
 
-        loadingBox.style.display = "flex";
+        loadingBox.style.display =
+            "flex";
 
     }
 
 
-    // =================================
-    // CONVERT SCREENSHOT TO BASE64
-    // =================================
-
-    console.log(
-        "Step 3 : Reading Screenshot"
-    );
-
-
-    const screenshotData =
-        await convertFileToBase64(screenshot);
-
-
-    console.log(
-        "Step 4 : Screenshot Converted"
-    );
-
-
-    // =================================
-    // PREPARE DATA
-    // =================================
-
-    const data = {
-
-        name:
-            registration.name || "",
-
-        email:
-            registration.email || "",
-
-        mobile:
-            registration.mobile || "",
-
-        profession:
-            registration.profession || "",
-
-        transaction:
-            transaction,
-
-        screenshotData:
-            screenshotData,
-
-        screenshotName:
-            screenshot.name,
-
-        screenshotType:
-            screenshot.type,
-
-        status:
-            "Payment Submitted"
-
-    };
-
-
-    console.log(
-        "Step 5 : Sending Registration Data"
-    );
-
-
-    // =================================
-    // SEND TO GOOGLE APPS SCRIPT
-    // =================================
-
     try {
+
+        // =================================
+        // CONVERT SCREENSHOT TO BASE64
+        // =================================
+
+        console.log(
+            "Step 1: Converting screenshot..."
+        );
+
+
+        const screenshotData =
+            await convertFileToBase64(
+                screenshot
+            );
+
+
+        console.log(
+            "Step 2: Screenshot converted."
+        );
+
+
+        console.log(
+            "Screenshot Base64 length:",
+            screenshotData.length
+        );
+
+
+        // =================================
+        // PREPARE DATA
+        // =================================
+
+        const data = {
+
+            name:
+                registration.name || "",
+
+            email:
+                registration.email || "",
+
+            mobile:
+                registration.mobile || "",
+
+            profession:
+                registration.profession || "",
+
+            transaction:
+                transaction,
+
+            screenshotData:
+                screenshotData,
+
+            screenshotName:
+                screenshot.name,
+
+            screenshotType:
+                screenshot.type,
+
+            status:
+                "Payment Submitted"
+
+        };
+
+
+        console.log(
+            "Step 3: Registration payload prepared."
+        );
+
+
+        console.log(
+            "Sending to Apps Script:"
+        );
+
+        console.log(
+            SCRIPT_URL
+        );
+
+
+        // =================================
+        // SEND TO GOOGLE APPS SCRIPT
+        // =================================
 
         const response =
             await fetch(
@@ -241,6 +342,13 @@ async function submitRegistration() {
 
                     method: "POST",
 
+                    headers: {
+
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+
+                    },
+
                     body:
                         JSON.stringify(data)
 
@@ -249,17 +357,101 @@ async function submitRegistration() {
             );
 
 
+        // =================================
+        // CHECK HTTP RESPONSE
+        // =================================
+
         console.log(
-            "Step 6 : Response Received"
+            "Step 4: HTTP response received."
         );
 
 
-        const result =
-            await response.json();
+        console.log(
+            "HTTP status:",
+            response.status
+        );
 
 
         console.log(
-            "Apps Script Result =",
+            "HTTP status text:",
+            response.statusText
+        );
+
+
+        console.log(
+            "Response URL:",
+            response.url
+        );
+
+
+        // =================================
+        // READ RESPONSE AS TEXT FIRST
+        // =================================
+
+        const responseText =
+            await response.text();
+
+
+        console.log(
+            "Step 5: Raw server response:"
+        );
+
+
+        console.log(
+            responseText
+        );
+
+
+        // =================================
+        // CHECK EMPTY RESPONSE
+        // =================================
+
+        if (!responseText) {
+
+            throw new Error(
+                "Google Apps Script returned an empty response."
+            );
+
+        }
+
+
+        // =================================
+        // PARSE JSON
+        // =================================
+
+        let result;
+
+
+        try {
+
+            result =
+                JSON.parse(responseText);
+
+        } catch (jsonError) {
+
+            console.error(
+                "JSON parsing failed:",
+                jsonError
+            );
+
+            console.error(
+                "Raw response was:",
+                responseText
+            );
+
+            throw new Error(
+                "Server returned a non-JSON response."
+            );
+
+        }
+
+
+        console.log(
+            "Step 6: Parsed Apps Script result:"
+        );
+
+
+        console.log(
             result
         );
 
@@ -273,18 +465,35 @@ async function submitRegistration() {
         ) {
 
             console.log(
-                "Registration Successful"
+                "================================="
+            );
+
+            console.log(
+                "REGISTRATION SUCCESSFUL"
+            );
+
+            console.log(
+                "Student ID:",
+                result.studentID
+            );
+
+            console.log(
+                "================================="
             );
 
 
+            // ---------------------------------
             // Remove temporary registration data
+            // ---------------------------------
 
             localStorage.removeItem(
                 "registrationData"
             );
 
 
-            // Save generated Student ID
+            // ---------------------------------
+            // Save Student ID
+            // ---------------------------------
 
             localStorage.setItem(
                 "studentID",
@@ -292,66 +501,62 @@ async function submitRegistration() {
             );
 
 
-            console.log(
-                "Student ID =",
-                result.studentID
-            );
-
-
+            // ---------------------------------
             // Go to success page
+            // ---------------------------------
 
             window.location.replace(
                 "success.html"
             );
 
 
-        }
-
-        // =================================
-        // SERVER ERROR
-        // =================================
-
-        else {
-
-            console.error(
-                "Registration Failed:",
-                result.message
-            );
-
-
-            if (loadingBox) {
-
-                loadingBox.style.display =
-                    "none";
-
-            }
-
-
-            button.disabled = false;
-
-            button.innerText =
-                "Continue";
-
-
-            alert(
-                "Registration failed.\n\n" +
-                (result.message || "Please try again.")
-            );
+            return;
 
         }
+
+
+        // =================================
+        // SERVER RETURNED ERROR
+        // =================================
+
+        console.error(
+            "Registration failed on server:"
+        );
+
+
+        console.error(
+            result
+        );
+
+
+        throw new Error(
+            result.message ||
+            "Google Apps Script returned an error."
+        );
 
     }
 
 
     // =================================
-    // CONNECTION ERROR
+    // ERROR HANDLER
     // =================================
 
     catch (error) {
 
         console.error(
-            "Connection Error:",
+            "================================="
+        );
+
+        console.error(
+            "AI SAGE REGISTRATION ERROR"
+        );
+
+        console.error(
             error
+        );
+
+        console.error(
+            "================================="
         );
 
 
@@ -370,7 +575,9 @@ async function submitRegistration() {
 
 
         alert(
-            "Unable to connect to AI Sage Server."
+            "Registration could not be completed.\n\n" +
+            error.message +
+            "\n\nPlease open the browser console for details."
         );
 
     }
@@ -385,6 +592,7 @@ async function submitRegistration() {
 function convertFileToBase64(file) {
 
     return new Promise(
+
         function(resolve, reject) {
 
             const reader =
@@ -412,6 +620,7 @@ function convertFileToBase64(file) {
             reader.readAsDataURL(file);
 
         }
+
     );
 
 }
