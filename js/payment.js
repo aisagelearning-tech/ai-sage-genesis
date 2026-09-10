@@ -1,16 +1,32 @@
 // =====================================
-// AI SAGE Payment / Registration
+// AI SAGE PAYMENT / REGISTRATION
+// Production Version
 // =====================================
 
 console.log("===== AI Sage Payment JS Loaded =====");
 
 
 // =====================================
-// GOOGLE APPS SCRIPT URL
+// GOOGLE APPS SCRIPT WEB APP URL
 // =====================================
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbyICEPSo23ZXQn42V13jTnPEHDIkOF6jbj4eiCpW0ACRDJ6eDmsG-YiE1MlwsQ-XTr1/exec";
+
+
+// =====================================
+// CONFIGURATION
+// =====================================
+
+const MAX_SCREENSHOT_SIZE =
+    5 * 1024 * 1024; // 5 MB
+
+
+const ALLOWED_IMAGE_TYPES = [
+    "image/jpeg",
+    "image/png",
+    "image/webp"
+];
 
 
 // =====================================
@@ -49,26 +65,48 @@ if (!verifyButton) {
 
 async function submitRegistration() {
 
-    console.log("=================================");
-    console.log("AI SAGE REGISTRATION STARTED");
-    console.log("=================================");
-
-
-    // ---------------------------------
-    // Read Registration Data
-    // ---------------------------------
-
-    const registrationData =
-        localStorage.getItem("registrationData");
-
-
     console.log(
-        "Registration data exists:",
-        !!registrationData
+        "Step 1 : Function Started"
     );
 
 
-    if (!registrationData) {
+    // =================================
+    // READ REGISTRATION DATA
+    // =================================
+
+    let registration;
+
+    try {
+
+        registration =
+            JSON.parse(
+                localStorage.getItem(
+                    "registrationData"
+                )
+            );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Invalid registrationData:",
+            error
+        );
+
+        alert(
+            "Registration information is invalid."
+        );
+
+        window.location.href =
+            "register.html";
+
+        return;
+
+    }
+
+
+    if (!registration) {
 
         alert(
             "Registration information not found."
@@ -82,49 +120,17 @@ async function submitRegistration() {
     }
 
 
-    let registration;
-
-
-    try {
-
-        registration =
-            JSON.parse(registrationData);
-
-    } catch (error) {
-
-        console.error(
-            "Registration JSON error:",
-            error
-        );
-
-        alert(
-            "Registration information is corrupted. Please register again."
-        );
-
-        return;
-
-    }
-
-
-    console.log(
-        "Registration data:",
-        registration
-    );
-
-
-    // ---------------------------------
-    // Read Transaction ID
-    // ---------------------------------
+    // =================================
+    // READ TRANSACTION ID
+    // =================================
 
     const transactionInput =
-        document.getElementById("transactionId");
+        document.getElementById(
+            "transactionId"
+        );
 
 
     if (!transactionInput) {
-
-        console.error(
-            "ERROR: transactionId input not found."
-        );
 
         alert(
             "Transaction ID field not found."
@@ -139,25 +145,17 @@ async function submitRegistration() {
         transactionInput.value.trim();
 
 
-    console.log(
-        "Transaction ID:",
-        transaction
-    );
-
-
-    // ---------------------------------
-    // Read Screenshot
-    // ---------------------------------
+    // =================================
+    // READ SCREENSHOT
+    // =================================
 
     const screenshotInput =
-        document.getElementById("paymentScreenshot");
+        document.getElementById(
+            "paymentScreenshot"
+        );
 
 
     if (!screenshotInput) {
-
-        console.error(
-            "ERROR: paymentScreenshot input not found."
-        );
 
         alert(
             "Payment screenshot field not found."
@@ -173,7 +171,13 @@ async function submitRegistration() {
 
 
     console.log(
-        "Screenshot:",
+        "Transaction ID =",
+        transaction
+    );
+
+
+    console.log(
+        "Screenshot =",
         screenshot
     );
 
@@ -185,11 +189,22 @@ async function submitRegistration() {
     if (!transaction) {
 
         console.log(
-            "Validation failed: Transaction ID missing."
+            "Validation Failed : Transaction ID Missing"
         );
 
         alert(
             "Please enter your UPI Transaction ID."
+        );
+
+        return;
+
+    }
+
+
+    if (transaction.length < 6) {
+
+        alert(
+            "Please enter a valid UPI Transaction ID."
         );
 
         return;
@@ -204,7 +219,7 @@ async function submitRegistration() {
     if (!screenshot) {
 
         console.log(
-            "Validation failed: Screenshot missing."
+            "Validation Failed : Screenshot Missing"
         );
 
         alert(
@@ -216,8 +231,45 @@ async function submitRegistration() {
     }
 
 
+    // =================================
+    // VALIDATE IMAGE TYPE
+    // =================================
+
+    if (
+        !ALLOWED_IMAGE_TYPES.includes(
+            screenshot.type
+        )
+    ) {
+
+        alert(
+            "Please upload a JPG, PNG or WEBP image."
+        );
+
+        return;
+
+    }
+
+
+    // =================================
+    // VALIDATE FILE SIZE
+    // =================================
+
+    if (
+        screenshot.size >
+        MAX_SCREENSHOT_SIZE
+    ) {
+
+        alert(
+            "Payment screenshot must be smaller than 5 MB."
+        );
+
+        return;
+
+    }
+
+
     console.log(
-        "Validation passed."
+        "Validation Passed"
     );
 
 
@@ -225,13 +277,11 @@ async function submitRegistration() {
     // DISABLE BUTTON
     // =================================
 
-    const button =
-        document.getElementById("verifyPayment");
+    verifyButton.disabled =
+        true;
 
 
-    button.disabled = true;
-
-    button.innerText =
+    verifyButton.innerText =
         "Submitting...";
 
 
@@ -239,8 +289,15 @@ async function submitRegistration() {
     // SHOW LOADING SCREEN
     // =================================
 
+    console.log(
+        "Step 2 : Showing Loading Screen"
+    );
+
+
     const loadingBox =
-        document.getElementById("loadingBox");
+        document.getElementById(
+            "loadingBox"
+        );
 
 
     if (loadingBox) {
@@ -258,7 +315,7 @@ async function submitRegistration() {
         // =================================
 
         console.log(
-            "Step 1: Converting screenshot..."
+            "Step 3 : Reading Screenshot"
         );
 
 
@@ -269,13 +326,7 @@ async function submitRegistration() {
 
 
         console.log(
-            "Step 2: Screenshot converted."
-        );
-
-
-        console.log(
-            "Screenshot Base64 length:",
-            screenshotData.length
+            "Step 4 : Screenshot Converted"
         );
 
 
@@ -316,16 +367,7 @@ async function submitRegistration() {
 
 
         console.log(
-            "Step 3: Registration payload prepared."
-        );
-
-
-        console.log(
-            "Sending to Apps Script:"
-        );
-
-        console.log(
-            SCRIPT_URL
+            "Step 5 : Sending Registration Data"
         );
 
 
@@ -340,7 +382,8 @@ async function submitRegistration() {
 
                 {
 
-                    method: "POST",
+                    method:
+                        "POST",
 
                     headers: {
 
@@ -350,42 +393,35 @@ async function submitRegistration() {
                     },
 
                     body:
-                        JSON.stringify(data)
+                        JSON.stringify(data),
+
+                    redirect:
+                        "follow"
 
                 }
 
             );
 
 
-        // =================================
-        // CHECK HTTP RESPONSE
-        // =================================
-
         console.log(
-            "Step 4: HTTP response received."
+            "Step 6 : Response Received"
         );
 
 
         console.log(
-            "HTTP status:",
+            "HTTP Status =",
             response.status
         );
 
 
         console.log(
-            "HTTP status text:",
-            response.statusText
-        );
-
-
-        console.log(
-            "Response URL:",
+            "Response URL =",
             response.url
         );
 
 
         // =================================
-        // READ RESPONSE AS TEXT FIRST
+        // READ RESPONSE
         // =================================
 
         const responseText =
@@ -393,26 +429,9 @@ async function submitRegistration() {
 
 
         console.log(
-            "Step 5: Raw server response:"
-        );
-
-
-        console.log(
+            "Step 7 : Raw Server Response =",
             responseText
         );
-
-
-        // =================================
-        // CHECK EMPTY RESPONSE
-        // =================================
-
-        if (!responseText) {
-
-            throw new Error(
-                "Google Apps Script returned an empty response."
-            );
-
-        }
 
 
         // =================================
@@ -425,33 +444,32 @@ async function submitRegistration() {
         try {
 
             result =
-                JSON.parse(responseText);
+                JSON.parse(
+                    responseText
+                );
 
-        } catch (jsonError) {
+        }
+
+        catch (parseError) {
 
             console.error(
-                "JSON parsing failed:",
-                jsonError
+                "JSON parsing failed."
             );
 
             console.error(
-                "Raw response was:",
+                "Server response:",
                 responseText
             );
 
             throw new Error(
-                "Server returned a non-JSON response."
+                "Server returned an invalid response."
             );
 
         }
 
 
         console.log(
-            "Step 6: Parsed Apps Script result:"
-        );
-
-
-        console.log(
+            "Apps Script Result =",
             result
         );
 
@@ -461,24 +479,18 @@ async function submitRegistration() {
         // =================================
 
         if (
+            result &&
             result.result === "success"
         ) {
 
             console.log(
-                "================================="
+                "Registration Successful"
             );
 
-            console.log(
-                "REGISTRATION SUCCESSFUL"
-            );
 
             console.log(
-                "Student ID:",
+                "Student ID =",
                 result.studentID
-            );
-
-            console.log(
-                "================================="
             );
 
 
@@ -502,6 +514,16 @@ async function submitRegistration() {
 
 
             // ---------------------------------
+            // Save transaction ID
+            // ---------------------------------
+
+            localStorage.setItem(
+                "transactionID",
+                transaction
+            );
+
+
+            // ---------------------------------
             // Go to success page
             // ---------------------------------
 
@@ -516,49 +538,28 @@ async function submitRegistration() {
 
 
         // =================================
-        // SERVER RETURNED ERROR
+        // SERVER REPORTED ERROR
         // =================================
 
-        console.error(
-            "Registration failed on server:"
-        );
-
-
-        console.error(
-            result
-        );
-
-
         throw new Error(
-            result.message ||
-            "Google Apps Script returned an error."
+            result?.message ||
+            "Registration failed."
         );
 
     }
 
 
-    // =================================
-    // ERROR HANDLER
-    // =================================
-
     catch (error) {
 
         console.error(
-            "================================="
-        );
-
-        console.error(
-            "AI SAGE REGISTRATION ERROR"
-        );
-
-        console.error(
+            "Registration Error:",
             error
         );
 
-        console.error(
-            "================================="
-        );
 
+        // =================================
+        // HIDE LOADING
+        // =================================
 
         if (loadingBox) {
 
@@ -568,16 +569,25 @@ async function submitRegistration() {
         }
 
 
-        button.disabled = false;
+        // =================================
+        // RE-ENABLE BUTTON
+        // =================================
 
-        button.innerText =
+        verifyButton.disabled =
+            false;
+
+
+        verifyButton.innerText =
             "Continue";
 
 
+        // =================================
+        // USER MESSAGE
+        // =================================
+
         alert(
-            "Registration could not be completed.\n\n" +
-            error.message +
-            "\n\nPlease open the browser console for details."
+            "Unable to complete registration.\n\n" +
+            "Please check your internet connection and try again."
         );
 
     }
@@ -592,7 +602,6 @@ async function submitRegistration() {
 function convertFileToBase64(file) {
 
     return new Promise(
-
         function(resolve, reject) {
 
             const reader =
@@ -617,10 +626,11 @@ function convertFileToBase64(file) {
                 };
 
 
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(
+                file
+            );
 
         }
-
     );
 
 }
