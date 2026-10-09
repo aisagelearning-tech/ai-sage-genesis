@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python for Artificial Intelligence | Flutestar Training and Consultancy Services LLP</title>
+<meta name="description" content="A 24-week hands-on Python for AI course for beginners: 22 labs, 8+ projects and a deployed capstone.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* All rules are scoped to .fs-roadmap so this block can be pasted into any website without clashing. */
+.fs-roadmap{--navy:#12204A;--ink:#1B2236;--muted:#55607A;--amber:#F5A524;--teal:#0E7C86;--blue:#2F5BD3;--purple:#7B4FD0;--orange:#C45A10;--magenta:#C2386B;--green:#1F8A4C;--line:#C9D1E4;--soft:#F4F6FB;
+  font-family:'Nunito Sans',system-ui,sans-serif;font-size:16px;line-height:1.55;color:var(--ink);background:#fff;}
+.fs-roadmap *{box-sizing:border-box}
+.fs-roadmap h1,.fs-roadmap h2,.fs-roadmap h3{font-family:'Sora',sans-serif;margin:0;line-height:1.15}
+.fs-roadmap p{margin:0}
+.fs-roadmap .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+.fs-roadmap section{padding:44px 0 0}
+.fs-roadmap h2.sec{font-size:clamp(22px,3.4vw,28px);color:var(--navy);margin-bottom:6px}
+.fs-roadmap .lead{color:var(--muted);margin-bottom:18px}
+
+/* hero */
+.fs-roadmap .hero{background:var(--navy);color:#fff;padding:36px 0 40px}
+.fs-roadmap .firm{font-family:'Sora',sans-serif;font-weight:700;font-size:15px;border-bottom:1px solid #3A4A7C;padding-bottom:14px;margin-bottom:22px}
+.fs-roadmap .firm span{font-weight:600;color:#DCE3F5}
+.fs-roadmap .eyebrow{display:flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;color:var(--amber);margin-bottom:16px}
+.fs-roadmap .eyebrow:before{content:"";width:28px;height:4px;background:var(--amber)}
+.fs-roadmap .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:center}
+.fs-roadmap .hero h1{font-size:clamp(34px,6vw,56px);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+.fs-roadmap .hero p{font-size:clamp(16px,2.2vw,19px);color:#DCE3F5}
+.fs-roadmap .code{background:#0A1433;border:1px solid #3A4A7C;border-radius:10px;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.75;color:#E8EDFB;overflow-x:auto}
+.fs-roadmap .code i{font-style:normal;color:#9FB0DE}
+.fs-roadmap .code b{font-weight:500;color:var(--amber)}
+.fs-roadmap .code u{text-decoration:none;color:#5FD0C8}
+.fs-roadmap .dots{display:flex;gap:6px;margin-bottom:10px}
+.fs-roadmap .dots span{width:9px;height:9px;border-radius:50%}
+.fs-roadmap .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.fs-roadmap .chip{border:1.5px solid var(--amber);border-radius:999px;padding:6px 16px;font-weight:700;font-size:14px}
+.fs-roadmap .chip:nth-child(2){border-color:#5FD0C8}.fs-roadmap .chip:nth-child(3){border-color:#8FA3E8}
+
+/* cards */
+.fs-roadmap .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.fs-roadmap .card{padding:16px 16px 18px;border-top:4px solid var(--c);background:var(--bg)}
+.fs-roadmap .card h3{font-size:16px;color:var(--t);margin-bottom:6px}
+.fs-roadmap .card p{font-size:15px}
+.fs-roadmap .teal{--c:#0E7C86;--bg:#EAF6F7;--t:#0A5A62}.fs-roadmap .blue{--c:#2F5BD3;--bg:#EEF2FD;--t:#1E3E99}
+.fs-roadmap .orange{--c:#C45A10;--bg:#FDF1E6;--t:#8F3F08}.fs-roadmap .purple{--c:#7B4FD0;--bg:#F3EEFB;--t:#55329A}
+.fs-roadmap .magenta{--c:#C2386B;--bg:#FCEDF3;--t:#9A2652}.fs-roadmap .green{--c:#1F8A4C;--bg:#E9F6EE;--t:#14663A}
+
+/* outcomes */
+.fs-roadmap .outcomes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px 32px;counter-reset:o}
+.fs-roadmap .outcomes li{display:flex;gap:12px;align-items:flex-start;counter-increment:o}
+.fs-roadmap .outcomes li:before{content:counter(o);flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--navy);color:var(--amber);font-family:'Sora',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center}
+
+/* journey */
+.fs-roadmap .journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px;margin-top:10px}
+.fs-roadmap .journey div{background:var(--c);color:#fff;padding:10px 8px;text-align:center;font-weight:700;font-size:14px;line-height:1.25}
+.fs-roadmap .panel{background:var(--soft);border:1px solid #D5DBEA;padding:18px 20px}
+.fs-roadmap .panel .note{margin-top:12px;font-size:15px;color:#3F4A66}
+
+/* phases */
+.fs-roadmap .phase{display:grid;grid-template-columns:140px minmax(0,1fr) 260px;border:1px solid var(--line);margin-bottom:12px}
+.fs-roadmap .phase .when{background:var(--c);color:#fff;padding:14px;display:flex;flex-direction:column;justify-content:center}
+.fs-roadmap .phase .when small{font-family:'Sora',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px}
+.fs-roadmap .phase .when strong{font-family:'Sora',sans-serif;font-weight:800;font-size:20px}
+.fs-roadmap .phase .what{padding:14px 16px}
+.fs-roadmap .phase .what h3{font-size:17px;color:var(--t);margin-bottom:5px}
+.fs-roadmap .phase .what p{font-size:15px}
+.fs-roadmap .phase .labs{background:var(--bg);padding:14px 16px;font-size:14.5px}
+.fs-roadmap .phase .labs b{display:block;color:var(--t);margin-bottom:2px}
+.fs-roadmap .phase .labs div{padding:1px 0}
+
+/* maths */
+.fs-roadmap .maths{background:var(--navy);color:#fff;padding:22px 22px 24px;margin-top:18px}
+.fs-roadmap .maths h3{color:var(--amber);font-size:19px;margin-bottom:4px}
+.fs-roadmap .maths .sub{color:#DCE3F5;font-size:14px;margin-bottom:14px}
+.fs-roadmap .maths .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:14px}
+.fs-roadmap .maths .tiles div{border:1px solid #5B6BA0;padding:8px 10px;font-size:14px;line-height:1.35}
+.fs-roadmap .maths p{color:#DCE3F5;font-size:15px}
+
+/* labs */
+.fs-roadmap .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:12px}
+.fs-roadmap .steps div{background:var(--soft);border-top:3px solid var(--c);padding:10px 12px;font-size:15px}
+.fs-roadmap .callout{border-left:4px solid var(--amber);background:#FEF6E6;padding:10px 14px}
+.fs-roadmap .labgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.fs-roadmap .labbox{border:1px solid var(--line);padding:12px 14px;font-size:15px}
+.fs-roadmap .labbox h3{font-size:15px;color:var(--t);margin-bottom:6px}
+.fs-roadmap .labbox div{padding:1px 0}
+.fs-roadmap .labbox.wide{grid-column:1/-1}
+.fs-roadmap .labbox.wide .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0 24px}
+.fs-roadmap .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.fs-roadmap .projects div{background:var(--bg);padding:12px 14px;font-size:15px}
+.fs-roadmap .projects b{display:block}
+.fs-roadmap .projects .cap{background:var(--navy);color:#fff}.fs-roadmap .projects .cap b{color:var(--amber)}
+
+/* assessment */
+.fs-roadmap .bar{display:flex;height:30px;color:#fff;font-weight:700;font-size:13px}
+.fs-roadmap .bar div{display:flex;align-items:center;justify-content:center;background:var(--c)}
+.fs-roadmap .legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:14px;font-weight:700}
+
+/* enrol */
+.fs-roadmap .enrol{background:var(--navy);color:#fff;margin-top:44px;padding:30px 0 34px}
+.fs-roadmap .enrol .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+.fs-roadmap .enrol h3{color:var(--amber);font-size:18px;margin-bottom:10px}
+.fs-roadmap .enrol p{padding:3px 0;font-size:15.5px}
+.fs-roadmap .enrol .foot{margin-top:24px;padding-top:14px;border-top:1px solid #3A4A7C;font-size:14px;color:#C9D3EE;font-weight:600}
+
+@media (max-width:820px){
+  .fs-roadmap .hero-grid{grid-template-columns:1fr}
+  .fs-roadmap .phase{grid-template-columns:1fr}
+  .fs-roadmap .phase .when{flex-direction:row;align-items:baseline;gap:12px}
+}
+@media print{
+  .fs-roadmap{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .fs-roadmap section{break-inside:avoid}
+}
+</style>
+</head>
+<body style="margin:0">
+<div class="fs-roadmap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="firm">Flutestar Training and Consultancy Services LLP <span>presents</span></div>
+      <div class="eyebrow">A 24-WEEK HANDS-ON COURSE</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Python for Artificial Intelligence</h1>
+          <p>From your very first line of code to an AI application that other people can actually use.</p>
+        </div>
+        <div class="code" aria-hidden="true">
+          <div class="dots"><span style="background:#F5A524"></span><span style="background:#5FD0C8"></span><span style="background:#8FA3E8"></span></div>
+          <div><i># your first AI model</i></div>
+          <div><b>from</b> sklearn <b>import</b> tree</div>
+          <div>model = tree.DecisionTreeClassifier()</div>
+          <div>model.fit(X_train, y_train)</div>
+          <div><u>print</u>(model.score(X_test, y_test))</div>
+        </div>
+      </div>
+      <div class="chips">
+        <div class="chip">Beginners welcome</div>
+        <div class="chip">22 guided labs</div>
+        <div class="chip">8+ portfolio projects</div>
+        <div class="chip">1 deployed capstone</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- WHY -->
+    <section>
+      <h2 class="sec">Why you will enjoy this course</h2>
+      <div class="grid4">
+        <div class="card teal"><h3>Start from zero</h3><p>No coding or advanced maths needed. We begin with installing Python and build up step by step.</p></div>
+        <div class="card blue"><h3>Learn by building</h3><p>Every lab solves a real problem: GST invoices, loan EMIs, customer churn, crop disease, chatbots.</p></div>
+        <div class="card orange"><h3>Maths made friendly</h3><p>Short weekly maths sessions, always paired with code, so every formula is something you can run.</p></div>
+        <div class="card purple"><h3>A portfolio, not just a certificate</h3><p>Your GitHub will show 24 weeks of dated work that recruiters can see and trust.</p></div>
+      </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section>
+      <h2 class="sec">After 24 weeks, you will be able to</h2>
+      <ol class="outcomes" style="padding:0;margin-top:14px">
+        <li>Write clean, tested Python programs using the standard library.</li>
+        <li>Clean, explore and visualize real data with NumPy, pandas and matplotlib.</li>
+        <li>Explain the linear algebra, calculus, probability and statistics behind ML.</li>
+        <li>Build, evaluate and tune machine-learning models with scikit-learn.</li>
+        <li>Train neural networks in PyTorch for images and text, including transfer learning.</li>
+        <li>Create an LLM chatbot that answers from your own documents (RAG) and know its limits.</li>
+        <li>Ship a model as a web API with FastAPI, Docker and Git.</li>
+        <li>Explain results and trade-offs clearly to non-technical people.</li>
+      </ol>
+    </section>
+
+    <!-- JOURNEY -->
+    <section>
+      <div class="panel">
+        <h3 style="font-size:18px;color:var(--navy)">Your journey in six steps</h3>
+        <div class="journey">
+          <div style="--c:#0E7C86">Python basics</div>
+          <div style="--c:#2F5BD3">Built-in toolbox</div>
+          <div style="--c:#7B4FD0">Data science</div>
+          <div style="--c:#C45A10">Machine learning</div>
+          <div style="--c:#C2386B">Deep learning and LLMs</div>
+          <div style="--c:#1F8A4C">Deploy and capstone</div>
+        </div>
+        <p class="note">Weeks 1-4, 5-6, 7-12, 13-17, 18-22 and 23-24. About 8-10 hours a week: 3 lecture, 3 lab and 2-4 practice.</p>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section>
+      <h2 class="sec">The roadmap: 24 weeks, 6 phases, one clear path</h2>
+      <p class="lead">Each phase builds on the one before. Every topic ends in a lab where you build something real.</p>
+
+      <div class="phase teal">
+        <div class="when"><small>PHASE 1</small><strong>Weeks 1-4</strong></div>
+        <div class="what"><h3>Python Foundations: learn to think in code</h3><p>Setup and first programs, variables and data types, decisions and loops, lists, dictionaries and sets, functions, classes, files, error handling, testing and debugging.</p></div>
+        <div class="labs"><b>Labs</b><div>0 Set up your workstation</div><div>1 GST invoice generator</div><div>2 Customer review text analysis</div><div>3 Loan EMI calculator</div><div>4 Inventory system with tests</div></div>
+      </div>
+
+      <div class="phase blue">
+        <div class="when"><small>PHASE 2</small><strong>Weeks 5-6</strong></div>
+        <div class="what"><h3>Python's Built-in Toolbox</h3><p>Maths and statistics modules, collections, dates and times, JSON, CSV and SQLite, regular expressions, command-line tools, logging, parallelism basics, timing and profiling your code.</p></div>
+        <div class="labs"><b>Lab</b><div>5 Web-server log analyzer with a SQLite database</div></div>
+      </div>
+
+      <div class="phase purple">
+        <div class="when"><small>PHASE 3</small><strong>Weeks 7-12</strong></div>
+        <div class="what"><h3>The Data Science Stack</h3><p>NumPy arrays and fast maths, pandas tables, cleaning and merging data, charts with matplotlib and seaborn, exploratory data analysis, SciPy, scaling and encoding, train/test splits.</p></div>
+        <div class="labs"><b>Labs</b><div>7 NumPy: speed, regression, k-means</div><div>8 pandas: clean a messy sales file</div><div>9 Visualization and EDA report</div><div>10 A/B testing and optimization</div></div>
+      </div>
+
+      <div class="phase orange">
+        <div class="when"><small>PHASE 4</small><strong>Weeks 13-17</strong></div>
+        <div class="what"><h3>Machine Learning</h3><p>Linear and logistic regression, k-NN, decision trees, random forests, boosting, model scoring and cross-validation, tuning, clustering, PCA, anomaly detection, an end-to-end ML project.</p></div>
+        <div class="labs"><b>Labs</b><div>11 House price prediction</div><div>12 Customer churn classification</div><div>13 Customer segmentation</div><div><strong>Week 17: ML project and talk</strong></div></div>
+      </div>
+
+      <div class="phase magenta">
+        <div class="when"><small>PHASE 5</small><strong>Weeks 18-22</strong></div>
+        <div class="what"><h3>Deep Learning and Generative AI</h3><p>Neural networks and backpropagation, PyTorch, image models (CNNs) and transfer learning, language models and Transformers, Hugging Face, fine-tuning, prompt engineering, retrieval-augmented chatbots, responsible AI.</p></div>
+        <div class="labs"><b>Labs</b><div>14 Neural network from scratch</div><div>15 PyTorch image classifier</div><div>16 Crop leaf disease detector</div><div>17 Support-ticket routing, sentiment</div><div>18 Retrieval-augmented chatbot</div></div>
+      </div>
+
+      <div class="phase green">
+        <div class="when"><small>PHASE 6</small><strong>Weeks 23-24</strong></div>
+        <div class="what"><h3>Deploy and Capstone</h3><p>Git and GitHub, tidy project structure, automated tests, code quality, serving a model with FastAPI, Streamlit or Gradio apps, Docker, then build and present your own capstone.</p></div>
+        <div class="labs"><b>Labs</b><div>19 Sales forecasting</div><div>20 FastAPI, Docker and Streamlit</div><div>21 Git, testing and code quality</div><div><strong>Week 24: capstone demo</strong></div></div>
+      </div>
+
+      <div class="maths">
+        <h3>Maths without fear: a parallel track, weeks 3-14</h3>
+        <div class="sub">About 1.5 hours a week · Lab 6 Mathematics in code</div>
+        <div class="tiles">
+          <div><b>Algebra</b><br>functions, logs, curves</div>
+          <div><b>Linear algebra</b><br>vectors, matrices</div>
+          <div><b>Calculus</b><br>slopes, gradients</div>
+          <div><b>Probability</b><br>Bayes, distributions</div>
+          <div><b>Statistics</b><br>tests, A/B testing</div>
+          <div><b>Optimization</b><br>gradient descent</div>
+        </div>
+        <p>Our rule: no formula without a 10-line code demo in the same session. You will see a derivative as "the slope my code uses to improve", not just symbols on a board.</p>
+      </div>
+    </section>
+
+    <!-- HOW TRAINED -->
+    <section>
+      <h2 class="sec">How you will be trained: practice every week, build every month</h2>
+      <h3 style="font-size:17px;color:var(--navy);margin:14px 0 10px">How every lab works</h3>
+      <div class="steps">
+        <div style="--c:#0E7C86"><b>1 Objectives</b><br>What you will be able to do</div>
+        <div style="--c:#2F5BD3"><b>2 Real scenario</b><br>A business problem to solve</div>
+        <div style="--c:#7B4FD0"><b>3 Guided build</b><br>Step-by-step code, typed by you</div>
+        <div style="--c:#C45A10"><b>4 Practice</b><br>Extra exercises to stretch you</div>
+        <div style="--c:#1F8A4C"><b>5 Deliverable</b><br>Submit it and self-check</div>
+      </div>
+      <div class="callout"><b>By hand, then by library.</b> First you build each idea from scratch so you truly understand it. Then you redo it with professional tools (pandas, scikit-learn, PyTorch) to work at industry speed.</div>
+    </section>
+
+    <section>
+      <h2 class="sec">22 labs at a glance</h2>
+      <div class="labgrid" style="margin-top:14px">
+        <div class="labbox teal"><h3>Python and standard library</h3><div>0 Environment setup</div><div>1 GST invoice generator</div><div>2 Review text analysis</div><div>3 Loan EMI calculator</div><div>4 Inventory system with tests</div><div>5 Web-server log analyzer</div></div>
+        <div class="labbox purple"><h3>Maths and data</h3><div>6 Mathematics in code</div><div>7 NumPy: speed, regression</div><div>8 pandas: messy sales file</div><div>9 Visualization, EDA report</div><div>10 A/B testing</div></div>
+        <div class="labbox orange"><h3>Machine learning</h3><div>11 House price prediction</div><div>12 Customer churn</div><div>13 Customer segmentation</div><div>14 Neural network from scratch</div></div>
+        <div class="labbox magenta wide"><h3>Deep learning, LLMs and delivery</h3>
+          <div class="two">
+            <div><div>15 PyTorch image classifier</div><div>16 Crop leaf disease detector</div><div>17 Support-ticket routing, sentiment</div><div>18 Retrieval-augmented chatbot</div></div>
+            <div><div>19 Sales forecasting</div><div>20 FastAPI, Docker and Streamlit</div><div>21 Git, testing and code quality</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec">Projects that look great on a CV</h2>
+      <div class="projects" style="margin-top:14px">
+        <div style="--bg:#EAF6F7"><b>Credit-risk scoring</b>for small loans</div>
+        <div style="--bg:#EEF2FD"><b>Demand forecasting</b>for a retail chain</div>
+        <div style="--bg:#F3EEFB"><b>Review intelligence</b>for an online seller</div>
+        <div style="--bg:#FDF1E6"><b>Visual quality inspection</b>spot defects with images</div>
+        <div style="--bg:#FCEDF3"><b>Document Q&amp;A assistant</b>a chatbot using RAG</div>
+        <div class="cap"><b>Your capstone</b>deployed, with a 10-minute talk</div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec">How you are assessed</h2>
+      <div class="bar" style="margin-top:14px" role="img" aria-label="Weekly labs 25%, maths problems 15%, mini-projects 15%, ML project 15%, capstone 25%, peer code reviews 5%">
+        <div style="flex:25;--c:#0E7C86">25%</div>
+        <div style="flex:15;--c:#2F5BD3">15%</div>
+        <div style="flex:15;--c:#7B4FD0">15%</div>
+        <div style="flex:15;--c:#C45A10">15%</div>
+        <div style="flex:25;--c:#1F8A4C">25%</div>
+        <div style="flex:5;--c:#C2386B">5%</div>
+      </div>
+      <div class="legend">
+        <span style="color:#0A5A62">Weekly labs</span>
+        <span style="color:#1E3E99">Maths problems</span>
+        <span style="color:#55329A">Mini-projects</span>
+        <span style="color:#8F3F08">ML project</span>
+        <span style="color:#14663A">Capstone</span>
+        <span style="color:#9A2652">Peer code reviews</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- ENROL -->
+  <footer class="enrol">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <h3>What you need</h3>
+          <p>A laptop with 8 GB RAM (16 GB is better) and 15 GB free space</p>
+          <p>Python 3.11+, VS Code or JupyterLab, Git and a GitHub account</p>
+          <p>A GPU is optional. Free Google Colab or Kaggle works fine</p>
+          <p>About 8-10 hours a week and a curious mind</p>
+        </div>
+        <div>
+          <h3>Ready? Join the next batch</h3>
+          <p><b>Starts:</b> [START DATE]</p>
+          <p><b>Timing:</b> [BATCH TIMING] · <b>Mode:</b> [VENUE OR ONLINE]</p>
+          <p><b>Fee and seats:</b> [FEE] · [SEATS]</p>
+          <p><b>Enrol with Flutestar:</b> [NAME, PHONE, EMAIL]</p>
+        </div>
+      </div>
+      <div class="foot">Flutestar Training and Consultancy Services LLP · Python for AI</div>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
